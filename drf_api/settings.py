@@ -62,7 +62,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = [ os.environ.get('ALLOWED_HOST'), '8000-tiagoma90-drfapi-jgx7i417bjb.ws-eu101.gitpod.io', 'localhost', 'djangorestframework-api.herokuapp.com']
+ALLOWED_HOSTS = [
+    os.environ.get('ALLOWED_HOST'),
+    '8000-tiagoma90-drfapi-jgx7i417bjb.ws-eu101.gitpod.io',
+    'localhost',
+    'djangorestframework-api.herokuapp.com']
 
 
 # Application definition
