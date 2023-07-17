@@ -66,7 +66,8 @@ ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     '8000-tiagoma90-drfapi-jgx7i417bjb.ws-eu101.gitpod.io',
     'localhost',
-    'djangorestframework-api.herokuapp.com']
+    'djangorestframework-api.herokuapp.com'
+    ]
 
 
 # Application definition
@@ -104,6 +105,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.staticfiles.middleware.StaticFilesMiddleware'
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
