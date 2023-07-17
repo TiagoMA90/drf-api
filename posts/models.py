@@ -11,7 +11,6 @@ class Post(models.Model):
     image = models.ImageField(
         upload_to='images/', default='../default_post_u0loxd', blank=True
     )
-
     image_filter_choices = [
         ('_1977', '1977'),
         ('brannan', 'Brannan'),
