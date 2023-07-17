@@ -61,9 +61,9 @@ REST_AUTH_SERIALIZERS = {
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = [ '8000-tiagoma90-drfapi-v1wocv951o1.ws-eu101.gitpod.io', 'djangorestframework-api-38c4a098777a.herokuapp.com', 'localhost', 'djangorestframework-api.herokuapp.com']
+ALLOWED_HOSTS = [ '8000-tiagoma90-drfapi-v1wocv951o1.ws-eu101.gitpod.io', 'localhost', 'djangorestframework-api.herokuapp.com']
 
 
 # Application definition
