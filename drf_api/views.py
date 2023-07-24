@@ -9,7 +9,7 @@ from .settings import (
 @api_view()
 def root_route(request):
     return Response({
-        "message": "DRF API is up an running!"
+        "message": "Welcome to my drf API!"
     })
 
 
