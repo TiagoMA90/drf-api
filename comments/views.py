@@ -10,17 +10,14 @@ from .serializers import CommentDetailSerializer
 
 class CommentList(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
-    permissions_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['post']
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-    filter_backends = [
-        DjangoFilterBackend,
-    ]
-    filterset_field = [
-        'post',
-    ]
+
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]

@@ -7,8 +7,8 @@ from likes.serializers import LikeSerializer
 
 
 class LikeList(generics.ListCreateAPIView):
-    serializer_class = LikeSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = LikeSerializer
     queryset = Like.objects.all()
 
     def perform_create(self, serializer):
