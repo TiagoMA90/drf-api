@@ -64,7 +64,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
-    '8000-tiagoma90-drfapi-nsj97429bp2.ws-eu102.gitpod.io',
+    '8000-tiagoma90-drfapi-85dnnpyzd5d.ws-eu102.gitpod.io',
     'djangorestframework-api-38c4a098777a.herokuapp.com',
     'localhost',
 ]
@@ -111,6 +111,7 @@ INSTALLED_APPS = [
     'comments',
     'likes',
     'followers',
+    'contacts',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
