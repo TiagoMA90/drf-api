@@ -1,8 +1,8 @@
 from django.db import models
 from django.db.models.signals import post_save
-# from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete
 from django.contrib.auth.models import User
-# from django.dispatch import receiver
+from django.dispatch import receiver
 
 # Profile Model
 class Profile(models.Model):
@@ -28,9 +28,9 @@ def create_profile(sender, instance, created, **kwargs):
 
 post_save.connect(create_profile, sender=User)
 
-# @receiver(post_delete, sender=Profile)
-# def delete_user(sender, instance, **kwargs):
-#     if instance.owner:
-#         instance.owner.delete()
-#
-# post_delete.connect(delete_user, sender=Profile)
+@receiver(post_delete, sender=Profile)
+def delete_user(sender, instance, **kwargs):
+    if instance.owner:
+         instance.owner.delete()
+
+post_delete.connect(delete_user, sender=Profile)
