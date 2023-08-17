@@ -29,6 +29,6 @@ post_save.connect(create_profile, sender=User)
 
 
 def delete_user(sender, instance, using, **kwargs):
-    instance.user.delete()
+    instance.owner.delete()
 
 post_delete.connect(delete_user, sender=Profile)
