@@ -64,7 +64,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
-    '8000-tiagoma90-drfapi-logk920btpq.ws-eu103.gitpod.io',
+    '8000-tiagoma90-drfapi-logk920btpq.ws-eu104.gitpod.io',
     'djangorestframework-api-38c4a098777a.herokuapp.com',
     'localhost',
 ]
