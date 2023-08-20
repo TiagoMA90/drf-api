@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from reports import views
 
 urlpatterns = [
     path('posts/<int:post_id>/report/', views.ReportCreate.as_view()),
