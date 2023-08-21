@@ -45,3 +45,6 @@ class ProfileDelete(generics.DestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+
+    def ProfileEliminate(self, instance):
+        instance.delete()
