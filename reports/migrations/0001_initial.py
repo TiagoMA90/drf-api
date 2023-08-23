@@ -16,16 +16,16 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Like',
+            name='Report',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('reason', models.CharField(choices=[('spam_flame', 'Spamming and Flaming'), ('inappropriate', 'Inappropriate Content'), ('other', 'Other')], max_length=32)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='likes', to='posts.post')),
+                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='posts.post')),
+                ('reporter', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['-created_at'],
-                'unique_together': {('owner', 'post')},
             },
         ),
     ]
