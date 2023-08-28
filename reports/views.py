@@ -8,12 +8,12 @@ class ReportList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     # Test perform_create and request data fro post_id
     def perform_create(self, serializer):
-    post_id = self.request.data.get('post')
-    try:
-        post = Post.objects.get(pk=post_id)
-        serializer.save(reporter=self.request.user, post=post)
-    except Post.DoesNotExist:
-        raise serializers.ValidationError("Invalid post ID")
+        post_id = self.request.data.get('post')
+        try:
+            post = Post.objects.get(pk=post_id)
+            serializer.save(reporter=self.request.user, post=post)
+        except Post.DoesNotExist:
+            raise serializers.ValidationError("Invalid post ID")
 
 
 class ReportDetail(generics.RetrieveUpdateDestroyAPIView):
