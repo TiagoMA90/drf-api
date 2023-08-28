@@ -11,7 +11,6 @@ class ReportSerializer(serializers.ModelSerializer):
             'id',
             'reporter',
             'post',
-            'post_id',
             'reason',
             'created_at',
         ]
