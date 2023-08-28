@@ -3,6 +3,7 @@ from django.db.models.signals import post_save
 from django.db.models.signals import post_delete
 from django.contrib.auth.models import User
 from django.dispatch import receiver
+from django.contrib.auth import logout
 
 # Profile Model
 class Profile(models.Model):
@@ -30,6 +31,8 @@ post_save.connect(create_profile, sender=User)
 
 def delete_user(sender, instance, **kwargs):
     if instance.owner:
-        instance.owner.delete()
+        user = instance.owner
+        logout(user)
+        user.delete()
 
 post_delete.connect(delete_user, sender=Profile)
