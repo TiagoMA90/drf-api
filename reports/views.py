@@ -5,7 +5,7 @@ from drf_api.permissions import IsOwnerOrReadOnly
 
 class ReportList(generics.ListCreateAPIView):
     serializer_class = ReportSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         return Report.objects.filter(reporter=self.request.user)
@@ -16,4 +16,4 @@ class ReportList(generics.ListCreateAPIView):
 class ReportDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]

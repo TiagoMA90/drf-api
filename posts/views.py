@@ -7,12 +7,6 @@ from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Post
 from .serializers import PostSerializer
 
-#...............................................................
-from reports.models import Report # testing
-from reports.serializers import ReportSerializer #testing
-from rest_framework.views import APIView # testing
-#...............................................................
-
 class PostList(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
