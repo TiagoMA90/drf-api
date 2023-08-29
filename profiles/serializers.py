@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import Profile
 from followers.models import Follower
-from walls.serializers import WallPostSerializer # testing
 
 class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
@@ -10,7 +9,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     posts_count = serializers.ReadOnlyField()
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
-    wall_posts = WallPostSerializer(many=True, read_only=True) # testing
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -40,5 +38,4 @@ class ProfileSerializer(serializers.ModelSerializer):
             'posts_count',
             'followers_count',
             'following_count',
-            'wall_posts', # testing
         ]
