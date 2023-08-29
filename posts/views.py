@@ -44,40 +44,10 @@ class PostList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-# (Original Batch: PostDetail)
-# class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-#     serializer_class = PostSerializer
-#     permission_classes = [IsOwnerOrReadOnly]
-#    queryset = Post.objects.annotate(
-#         likes_count=Count('likes', distinct=True),
-#        comments_count=Count('comment', distinct=True)
-#    ).order_by('-created_at')
-
-# ............................................................................
-class PostDetail(generics.RetrieveUpdateDestroyAPIView): # testing
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Post.objects.annotate(
         likes_count=Count('likes', distinct=True),
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-class ReportPostView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
-    def post(self, request, pk):
-        post = Post.objects.get(pk=pk)
-        serializer = ReportSerializer(data={
-            'reporter': request.user.pk,
-            'post': post.pk,
-            'reason': request.data.get('reason'),
-            'description': request.data.get('description', ''),
-        })
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#...................................................................................
