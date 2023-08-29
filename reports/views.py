@@ -1,7 +1,7 @@
-from rest_framework import generics
-from rest_framework import permissions
+from rest_framework import generics, permissions
 from .models import Report
 from .serializers import ReportSerializer
+from drf_api.permissions import IsOwnerOrReadOnly
 
 class ReportList(generics.ListCreateAPIView):
     serializer_class = ReportSerializer
@@ -16,4 +16,4 @@ class ReportList(generics.ListCreateAPIView):
 class ReportDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsOwnerOrReadOnly]
