@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from reports.models import Report
+from .models import Report
 
 class ReportSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
