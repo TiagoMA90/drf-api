@@ -81,7 +81,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-tiagoma90-drfapi-0yd4agfyaqy.ws-eu104.gitpod.io', 'https://djangorestframework-api-38c4a098777a.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://8000-tiagoma90-drfapi-qjj8atxkule.ws-eu104.gitpod.io', 'https://djangorestframework-api-38c4a098777a.herokuapp.com']
 
 CORS_ALLOW_CREDENTIALS = True
 
