@@ -28,8 +28,13 @@ def create_profile(sender, instance, created, **kwargs):
 
 post_save.connect(create_profile, sender=User)
 
-def delete_user(sender, instance, **kwargs):
-    if instance.owner:
-        instance.owner.delete()
+
+def delete_user(self, *args, **kwargs):
+        self.owner.delete()
+        super().delete(*args, **kwargs)
+
+# def delete_user(sender, instance, **kwargs):
+#    if instance.owner:
+#        instance.owner.delete()
 
 post_delete.connect(delete_user, sender=Profile)
