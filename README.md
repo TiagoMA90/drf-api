@@ -1,108 +1,130 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# drf-api
+"drf-api"" is the backend service used by the [Connect](https://github.com/TiagoMA90/connect) platform.
+The deployed API can be found [here](https://djangorestframework-api-38c4a098777a.herokuapp.com/)
 
-Welcome TiagoMA90,
+# Purpose of the API:
+To serve as the Back bone for the Front-end, by posting and getting data from endpoints.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Agile
+(ELABORATE)
+[IMAGE of the User Stories]
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+## User Stories
 
-## Gitpod Reminders
+## Relationship Diagram
+The relationship diagram between models from an individual perspective can be best defined as follows:
+An individual Profile (authenticated) associated to a User can CRUD multiples Posts and CRUD multiple Comments either to a single or multiple Posts, Users can also Like/Dislike multiple Posts (but their own) or Report multiple Posts. Furthermore, Users can Follow/Unfollow multiple Profiles. Lastly (non-authenticated) Users can send messages via Contact.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+- The [Profile](https://djangorestframework-api-38c4a098777a.herokuapp.com/profiles/) flaunts the owner(OneToOne), image(ImageField), content(TextField), name(CharField), created_at(DateTimeField) and updated_at(DateTimeField)
+- A [Post](https://djangorestframework-api-38c4a098777a.herokuapp.com/posts/) created by a User Profile, features the owner(ForeignKey), created_at(DateTimeField), updated_at(DateTimeField), title(CharField), content(TextField), image(ImageField) and image_filter(CharField) once submited
+- The [Comments](https://djangorestframework-api-38c4a098777a.herokuapp.com/comments/) model takes a similar approach, inheriting the post(ForeignKey) and owner(ForeignKey), it displays the content(TextField), created_at(DateTimeField), updated_at(DateTimeField) of the comment
+- The [Like](https://djangorestframework-api-38c4a098777a.herokuapp.com/likes/) marked by the owner(ForeignKey), post(ForeignKey) and created_at(DateTimeField)
+- The [Follower](https://djangorestframework-api-38c4a098777a.herokuapp.com/followers/) defined by owner(ForeignKey), followed(ForeignKey), created_at(DateTimeField)
+- Then the [Report](https://djangorestframework-api-38c4a098777a.herokuapp.com/reports/) functionality enlists a tuples for REASON_CHOICES, followed by the reporter(ForeignKey) and post(ForeignKey), reason(CharField), description(TextField) and created_at(DateTimeField)
+- The [Contact](https://djangorestframework-api-38c4a098777a.herokuapp.com/contacts/) form finally makes use of the name(CharField) and email(EmailField) for external users, subject(Charfield), message(TextField), created_at(DateTimeField).
 
-`python3 -m http.server`
+Under Barkers notation. One/Many Profiles can create many Posts. Many Comments can be created in many Posts by one/many Profiles. One Likes/Unlikes can be created in many Posts by one/many Profiles. Many Reports can be created on many Posts by one/many Profiles. One/Many Profiles can follow/unfollow many Profiles. Contacts should be considered an isolated model as it is accessible by anyone, ergo many Users.
 
-A blue button should appear to click: _Make Public_,
+[IMAGE of the diagram]
 
-Another blue button should appear to click: _Open Browser_.
+## Features and Functionality for Superusers
+- CRUD Posts.
+- CRUD Comments
+- CRUD Profiles
+- CRUD Contacts
+- CRUD Reports
+- Change Passwords.
+- Promote users to Superuser.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+<img src="readme/AdminPanel.png" alt="Admin Panel (local)">
 
-A blue button should appear to click: _Make Public_,
+[IMAGE of the Admin Panel]
 
-Another blue button should appear to click: _Open Browser_.
+## Manual Testing
+Manual Testing for the overall functionality of the API was performed through [/admin](https://djangorestframework-api-38c4a098777a.herokuapp.com/admin/)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+CI Python Linter was also used in parallel with the development of the API, to keep the code free of errors.
+The Code has not exhibited apparent errors.
+<img src="readme/CIPythonLinter.png" alt="CI Python Linter">
 
-To log into the Heroku toolbelt CLI:
+## Installed Python Packages
+The following packages were installed when developing this project:
+To install, the following command ran: ```pip install``` ...
+- ```Pillow==8.2.0```
+- ```psycopg2==2.9.6```
+- ```cloudinary==1.25.0```
+- ```dj-database-url==0.5.0```
+- ```dj-rest-auth==2.1.9```
+- ```Django==3.2.4```
+- ```django-allauth==0.44.0```
+- ```django-cloudinary-storage==0.3.0```
+- ```django-cors-headers==3.7.0```
+- ```django-filter==2.4.0```
+- ```djangorestframework==3.12.4```
+- ```djangorestframework-simplejwt==4.7.2```
+- ```gunicorn==20.1.0```
+- ```PyJWT==2.1.0```
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+## Package Dependencies
+- asgiref==3.3.4
+- cryptography==3.4.8
+- oauthlib==3.1.1
+- python3-openid==3.2.0
+- pytz==2021.1
+- requests-oauthlib==1.3.0
+- sqlparse==0.4.1
+- urllib3==1.26.15
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+# Development & Deployment
+The project was developed using GitHub and GitPod platforms...
+- Navigate to: "Repositories" and create "New".
+- Mark the following fields: ✓ Public ✓ Add a README file.
+- Select template: "Code-Institute-Org/python-essentials-template".
+- Add a Repository name: "drf-api".
+- ...and create Repository.
 
-------
+... and suffered various executions using the inbuild Terminal.
 
-## Release History
+For Commits on this project, the following commands ran:
+- ```git add .``` <- Stages before commiting.
+- ```git commit -m "written imperative declaration"``` <- Declares changes and updates.
+- ```git push``` <- Push all updates to the GitHub Repository.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+To run the server locally (Debug = True), the following command ran:
+- ```python manage.py runserver``` <- Loads the website on the in-built Terminal.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+During development migrations to the database were made.
+To make migrations the following commands ran:
+- ```python manage.py makemigrations``` <- Creates a new database migration
+- ```python manage.py migrate``` <- Applies pending migrations
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+To create or update Requirements.txt file the following commands ran:
+- ```pip3 freeze --local > requirements.txt```  <-Runs the req.
+- ```pip install -r requirements.txt``` <- Install req.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+To create a Superuser the following command ran (from Heroku terminal): 
+- ```python manage.py createsuperuser``` (username->email->password1->password2) <- Creates a Superuser
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+To create a new Django project, in the currenct directory, the followig command ran:
+- ```django-admin startproject NAMEOFTHEPROJECT .``` <- Starts the project
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+To create the app the following command ran:
+- ```python3 manage.py startapp NAMOFTHEAPP``` <- Creates a folder for the app withing the project
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+## Languages & Technologies
+- Django REST Framework (Python Framework - API)
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Other forms of development
+- [CI Python Linter](https://pep8ci.herokuapp.com/) - CI Python testing tool
+- [Diagrams](https://app.diagrams.net/) - Diagram set up
+- [Github](https://github.com/) - Host for the repository
+- [Gitpod](https://gitpod.io/) - Code editor
+- [ElephantSQL](https://www.elephantsql.com/) - Database
+- [Cloudinary](https://cloudinary.com/) - Static & Media host
+- [Heroku](https://id.heroku.com/) - Cloud platform/Host the live project
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+## Credits
+The following sources and references were resorted for the creation of this website:
+- This project evolved from the lessons and tutorials provided by Code Institute, on the final module entitled "Django REST Framework" for the Advanced Front End specialization
+- Tutor assistance provided by Code Institutes Student Support
+- Slack(#project-portfolio-5-advanced-frontend) was used as a solution platform for broken code and guidance on how to procceed on blockades

@@ -4,7 +4,7 @@ from django.db.models.signals import post_delete
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 
-# Profile Model
+
 class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -26,10 +26,13 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(owner=instance)
 
+
 post_save.connect(create_profile, sender=User)
+
 
 def delete_user(sender, instance, **kwargs):
     if instance.owner:
         instance.owner.delete()
+
 
 post_delete.connect(delete_user, sender=Profile)

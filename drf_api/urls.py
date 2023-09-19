@@ -19,6 +19,7 @@ from django.urls import include
 from .views import root_route
 from .views import logout_route
 
+
 urlpatterns = [
     path('', root_route),
     path('admin/', admin.site.urls),
@@ -34,5 +35,5 @@ urlpatterns = [
     path('', include('likes.urls')),
     path('', include('followers.urls')),
     path('', include('contacts.urls')),
-    path('', include('reports.urls')), # testing
+    path('', include('reports.urls')),
 ]

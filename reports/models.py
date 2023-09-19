@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from posts.models import Post
 
+
 class Report(models.Model):
     REASON_CHOICES = [
         ('spam', 'Spam'),

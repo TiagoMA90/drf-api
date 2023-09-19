@@ -63,7 +63,7 @@ DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
-    '8000-tiagoma90-drfapi-qjj8atxkule.ws-eu104.gitpod.io',
+    '8000-tiagoma90-drfapi-nmzjwaqpe2q.ws-eu104.gitpod.io',
     'djangorestframework-api-38c4a098777a.herokuapp.com',
     'localhost',
 ]
@@ -81,7 +81,10 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-tiagoma90-drfapi-qjj8atxkule.ws-eu104.gitpod.io', 'https://djangorestframework-api-38c4a098777a.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-tiagoma90-drfapi-qjj8atxkule.ws-eu104.gitpod.io',
+    'https://djangorestframework-api-38c4a098777a.herokuapp.com'
+    ]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -113,7 +116,7 @@ INSTALLED_APPS = [
     'likes',
     'followers',
     'contacts',
-    'reports', # testing
+    'reports',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
