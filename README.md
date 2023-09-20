@@ -1,9 +1,9 @@
 # drf-api
 "drf-api"" is the backend service used by the [Connect](https://github.com/TiagoMA90/connect) platform.
-The deployed API can be found [here](https://djangorestframework-api-38c4a098777a.herokuapp.com/)
+The deployed DjangoRESTFramework API can be found [here](https://djangorestframework-api-38c4a098777a.herokuapp.com/)
 
 # Purpose of the API:
-To serve as the Back bone for the Front-end, by posting and getting data from endpoints.
+To serve as the Back bone for the Front-end, by posting and getting data from endpoints and to perform Create, Read, Update and Delete operations to objects entered by Users via Front-end.
 
 ## Agile
 (ELABORATE)
@@ -13,7 +13,6 @@ To serve as the Back bone for the Front-end, by posting and getting data from en
 
 ## Relationship Diagram
 The relationship diagram between models from an individual perspective can be best defined as follows:
-An individual Profile (authenticated) associated to a User can CRUD multiples Posts and CRUD multiple Comments either to a single or multiple Posts, Users can also Like/Dislike multiple Posts (but their own) or Report multiple Posts. Furthermore, Users can Follow/Unfollow multiple Profiles. Lastly (non-authenticated) Users can send messages via Contact.
 
 - The [Profile](https://djangorestframework-api-38c4a098777a.herokuapp.com/profiles/) flaunts the owner(OneToOne), image(ImageField), content(TextField), name(CharField), created_at(DateTimeField) and updated_at(DateTimeField)
 - A [Post](https://djangorestframework-api-38c4a098777a.herokuapp.com/posts/) created by a User Profile, features the owner(ForeignKey), created_at(DateTimeField), updated_at(DateTimeField), title(CharField), content(TextField), image(ImageField) and image_filter(CharField) once submited
@@ -23,47 +22,73 @@ An individual Profile (authenticated) associated to a User can CRUD multiples Po
 - Then the [Report](https://djangorestframework-api-38c4a098777a.herokuapp.com/reports/) functionality enlists a tuples for REASON_CHOICES, followed by the reporter(ForeignKey) and post(ForeignKey), reason(CharField), description(TextField) and created_at(DateTimeField)
 - The [Contact](https://djangorestframework-api-38c4a098777a.herokuapp.com/contacts/) form finally isolated makes use of the name(CharField) and email(EmailField) for external users, subject(Charfield), message(TextField), created_at(DateTimeField).
 
-Under Barker's notation. One/Many Profiles can create many Posts. Many Comments can be created in many Posts by one/many Profiles. One Likes/Unlikes can be created in many Posts by one/many Profiles. Many Reports can be created on many Posts by one/many Profiles. One/Many Profiles can follow/unfollow many Profiles. Contacts should be considered an isolated model as it is accessible by anyone, ergo many Users.
+Under Barker's notation. One/Many Users can create multiple Profiles, which can then create many Posts. Many Comments can be created in many Posts by one/many Profiles. One Likes/Unlikes can be created in many Posts by one/many Profiles. Many Reports can be created on many Posts by one/many Profiles. One/Many Profiles can follow/unfollow many Profiles. Contacts should be considered an isolated model as it is accessible by anyone, ergo many Users.
 
 <img src="readme/DiagramRelationship.png" alt="Models Diagram">
 
+## Methodology CRUD
+When performing CRUD (Create, Retrieve, Update, Delete) function based views, the following methods were used to manipulate the table in the database.
+
+For such, to the subsequent endpoints:
+/profiles/, /posts/, /comments/, /likes/, /followers/, /reports/, /contacts/ 
+
+- POST - Used to create an object to a list of (endpoint)
+- GET - Used to retrieve series of objects from a list of (endpoint)
+
+Singularly, for the same endpoints past the primary keys:
+/profiles/int:pk/, /posts/int:pk/int:pk/, /comments/int:pk/, /likes/int:pk/, /followers/int:pk/, /reports/int:pk/, /contacts/int:pk/
+
+- GET - Used to view a single object in a list or (endpoint)
+- PUT - Used to update a single object in a list of (endpoint)
+- DELETE - Used to delete an existant single object from a list of (endpoint)
+
+Users can then:
+- CRUD Profiles
+- CRUD Posts
+- CRUD Comments
+- CRUD Likes
+- CRUD Followers
+- CR Reports
+- CR Contacts
+
 ## Features and Functionality for Superusers
-- CRUD Posts.
+
+As a Superuser one has the ability to perform the following via the [admin panel](https://djangorestframework-api-38c4a098777a.herokuapp.com/admin/):
+- CRUD Posts
 - CRUD Comments
 - CRUD Profiles
 - CRUD Contacts
 - CRUD Reports
-- Change Passwords.
-- Promote users to Superuser.
+- Change Passwords
+- Promote users to Superuser
 
 <img src="readme/AdminPanel.png" alt="Admin Panel (local)">
 
-[IMAGE of the Admin Panel]
-
 ## Manual Testing
-Manual Testing for the overall functionality of the API was performed through [/admin](https://djangorestframework-api-38c4a098777a.herokuapp.com/admin/)
-
+Manual Testing for the overall functionality of the API was performed by entering dummy data in the backend.
 CI Python Linter was also used in parallel with the development of the API, to keep the code free of errors.
-The Code has not exhibited apparent errors.
+
+The Code has not exhibited apparent errors after consecutive tests and corrections.
+
 <img src="readme/CIPythonLinter.png" alt="CI Python Linter">
 
 ## Installed Python Packages
 The following packages were installed when developing this project:
 To install, the following command ran: ```pip install``` ...
-- ```Pillow==8.2.0```
-- ```psycopg2==2.9.6```
-- ```cloudinary==1.25.0```
-- ```dj-database-url==0.5.0```
-- ```dj-rest-auth==2.1.9```
-- ```Django==3.2.4```
-- ```django-allauth==0.44.0```
-- ```django-cloudinary-storage==0.3.0```
-- ```django-cors-headers==3.7.0```
-- ```django-filter==2.4.0```
-- ```djangorestframework==3.12.4```
-- ```djangorestframework-simplejwt==4.7.2```
-- ```gunicorn==20.1.0```
-- ```PyJWT==2.1.0```
+- ```Pillow==8.2.0``` <- Python Imaging Library
+- ```psycopg2==2.9.6``` <- PostgreSQL adapter for Python
+- ```cloudinary==1.25.0``` <- Cloudinary - cloud-based image and video host
+- ```dj-database-url==0.5.0``` <- Utility library for Django
+- ```dj-rest-auth==2.1.9``` <- Authentication functionality for DjangoRESTFramework-based APIs
+- ```Django==3.2.4``` <- Python web framework
+- ```django-allauth==0.44.0``` <- Extension for Django to a customizable authentication system
+- ```django-cloudinary-storage==0.3.0``` <- Cloudinary - Backend storage for static media files
+- ```django-cors-headers==3.7.0``` <- Middleware Cross-Origin Resource Sharing (CORS)
+- ```django-filter==2.4.0``` <- Package to simplify filtering QuerySets
+- ```djangorestframework==3.12.4``` <- Toolkit for building Web APIs
+- ```djangorestframework-simplejwt==4.7.2``` <- Extension that provides JSON Web Token (JWT) authentication
+- ```gunicorn==20.1.0``` <- WSGI HTTP server for running Python web applications
+- ```PyJWT==2.1.0``` <- Library for working with JSON Web Tokens (JWT)
 
 ## Package Dependencies
 - asgiref==3.3.4
