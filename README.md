@@ -5,11 +5,70 @@ The deployed DjangoRESTFramework API can be found [here](https://djangorestframe
 # Purpose of the API:
 To serve as the Back bone for the Front-end, by posting and getting data from endpoints and to perform Create, Read, Update and Delete operations to objects entered by Users via Front-end.
 
-## Agile
-(ELABORATE)
-[IMAGE of the User Stories]
+## Planning & Agile:
+This [project](https://github.com/users/TiagoMA90/projects/10) was planned using Agile methodology and MoSCoW prioritization.
 
-## User Stories
+For this purpose, the project was illustrated by [7 initial Milestone](https://github.com/TiagoMA90/drf-api/milestones) entitled "Profiles", "Posts", "Likes", "Comments", "Followers", "Contacts" and "Reports"  providing the developer with the freedom to accomplish all issues/tasks flexibly before dates deadline set to November. The Milestones broken according to their components name.
+
+Throughout the development process, tasks started from "Todo," progressing to "In Progress," and finally "Done". The issues were assigned to the sole developer and labeled as "could-have," "should-have,", "must-have" and "won't -have".
+
+<img src="readme/SampleAgile.png" alt="Sample Agile">
+
+In order of priority, with 51 User Stories, the Project has:
+
+Must-Have:
+- Models, Views, Serializers, Urls for "profiles/posts/comments/likes"
+- Set Up and Deployment
+- View Users Profiles (Profiles)
+- Profiles Premissions (Profiles)
+- View Posts (Posts)
+- Create a Post (Posts)
+- Post Premissions (Posts)
+- View Comments (Comments)
+- Create a Comment (Comments)
+- Like Premissions (Likes)
+- Report Premissions (Reports)
+- View Contacts (Contacts)
+
+Should-Have:
+- Models, Views, Serializers, Urls for "followers/reports/contacts
+- View Users Detail Profile (Profile)
+- Update User Profile (Profile)
+- Delete User Profile (Profile)
+- Filter Posts (Posts)
+- Update my Post (Posts)
+- Like a Post (Posts)
+- Comment on a Post (Posts)
+- View Comments Details (Comments)
+- Update my Comment (Comment)
+- Delete my Comment (Comment)
+- View Like (Likes)
+- Like/Unlike a Post (Likes)
+- View Like Details (Likes)
+- View Followers (Followers)
+- Follow a User (Followers)
+- Unfollow a User (Followers)
+- View Follower Details
+- Create a Report (Reports)
+- View Report Details (Reports)
+- Create a Contact (Contacts)
+- Contact Premissions (Admin)(Contacts)
+- View Contacts Details (Admin)(Contacts)
+
+Could-Have:
+- Models, Views, Serializers, Urls for "likes"
+- Search for Posts (Posts)
+- View Posts Details (Posts)
+- Delete a Contact (Admin)(Contacts)
+- Update a Contact (Admin)(Contacts)
+
+Wont-Have:
+- Remove a Follower (Followers)
+- Update my Report (Reports)
+- Delete my Report (Reports)
+
+The issues were closed and the milestones subsequently too.
+- Note: The Ratings Model was left as "To Do". Will be created when there are no time constraints.
 
 ## Relationship Diagram
 The relationship diagram between models from an individual perspective can be best defined as follows:
