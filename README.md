@@ -124,10 +124,12 @@ As a Superuser one has the ability to perform the following via the [admin panel
 <img src="readme/AdminPanel.png" alt="Admin Panel (local)">
 
 ## Manual Testing
-Manual Testing for the overall functionality of the API was performed by entering dummy data in the backend.
+Manual Testing for the overall functionality of the API was performed by entering dummy data in the backend both via Backend-and Front-end.
+All data is CRUDed acordingly.
+
 CI Python Linter was also used in parallel with the development of the API, to keep the code free of errors.
 
-The Code has not exhibited apparent errors after consecutive tests and corrections.
+The Code has not exhibited apparent errors after consecutive tests and corrections throughout the development. Test Commits were exectuted in attempts to test the responsivness with the Front and the deployed Back-end.
 
 <img src="readme/CIPythonLinter.png" alt="CI Python Linter">
 
@@ -209,6 +211,6 @@ To create the app the following command ran:
 
 ## Credits
 The following sources and references were resorted for the creation of this website:
-- This project evolved from the lessons and tutorials provided by Code Institute, on the final module entitled "Django REST Framework" for the Advanced Front End specialization
-- Tutor assistance provided by Code Institutes Student Support
-- Slack(#project-portfolio-5-advanced-frontend) was used as a solution platform for broken code and guidance on how to procceed on blockades
+- The lessons and tutorials provided by Code Institute, on the final module entitled "Django REST Framework" for the 'Advanced Front-End' specialization
+- The Tutor team provided by Code Institutes Student Support
+- Slack(#project-portfolio-5-advanced-frontend) as a solution platform for broken code and guidance on how to procceed to blockades
