@@ -46,5 +46,7 @@ class ProfileDelete(generics.DestroyAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-    def ProfileEliminate(self, instance):
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
         instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
