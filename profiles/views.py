@@ -41,21 +41,10 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
 
 
-# class ProfileDelete(generics.DestroyAPIView):
-#    permission_classes = [IsOwnerOrReadOnly]
-#    queryset = Profile.objects.all()
-#    serializer_class = ProfileSerializer
-
-#    def ProfileEliminate(self, instance):
-#        instance.delete()
-
-# TEST
 class ProfileDelete(generics.DestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def ProfileEliminate(self, instance):
+        instance.delete()
