@@ -14,5 +14,4 @@ class ReportSerializer(serializers.ModelSerializer):
             'reason',
             'description',
             'created_at',
-            'is_closed', #test
         ]

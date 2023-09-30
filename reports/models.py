@@ -15,10 +15,6 @@ class Report(models.Model):
     reason = models.CharField(max_length=32, choices=REASON_CHOICES)
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    is_closed = models.BooleanField(default=False) #test
-
-    class Meta: #test
-        unique_together = ['reporter', 'post'] #test
 
     def __str__(self):
         return f'{self.reporter.username} reported {self.post.title}'
