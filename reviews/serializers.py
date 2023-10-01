@@ -6,8 +6,7 @@ from .models import Review
 class ReviewSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.username")
     is_owner = serializers.SerializerMethodField()
-    #(revert?) profile_id = serializers.ReadOnlyField(source="owner.profile.id")
-    profile_id = serializers.ReadOnlyField(source="profile.id") #(remove?)
+    profile_id = serializers.ReadOnlyField(source="owner.profile.id")
     profile_image = serializers.ReadOnlyField(source="owner.profile.image.url")
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
