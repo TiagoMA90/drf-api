@@ -28,13 +28,13 @@ class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
         return review
 
     def perform_update(self, serializer):
-    review = self.get_object()
-    print(f"Review ID: {review.id}")
-    print(f"Request User: {self.request.user}")
+        review = self.get_object()
+        print(f"Review ID: {review.id}")
+        print(f"Request User: {self.request.user}")
 
-    if self.request.user == review.owner:
-        serializer.save()
-        return Response(serializer.data)
-    else:
-        print("Permission Denied: User is not the owner.")
-        raise PermissionDenied("You do not have permission to edit this review.")
+        if self.request.user == review.owner:
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            print("Permission Denied: User is not the owner.")
+            raise PermissionDenied("You do not have permission to edit this review.")
