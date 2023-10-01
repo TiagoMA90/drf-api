@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Review(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE) #(remove?)
     content = models.TextField()
     rating = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
