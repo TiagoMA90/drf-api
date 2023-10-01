@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from profiles.models import Profile #TEST
 
 class Review(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -8,6 +8,7 @@ class Review(models.Model):
     rating = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, default=1) #TEST
 
     class Meta:
         ordering = ["-created_at"]
