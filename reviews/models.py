@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Profile(models.Model): #(remove?)
+    user = models.OneToOneField(User, on_delete=models.CASCADE) #(remove?)
 
 class Review(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
