@@ -24,5 +24,5 @@ class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
         if self.request.user == serializer.instance.owner: #TEST
             serializer.save() #TEST
         else: # TEST
-            raise PermissionDenied("You do not have permission to edit this review.") #TEST
+            raise PermissionDenied("You do not have permission to edit this review.")
 
