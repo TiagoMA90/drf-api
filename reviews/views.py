@@ -19,3 +19,10 @@ class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ReviewDetailSerializer
     queryset = Review.objects.all()
+
+    def perform_update(self, serializer): #TEST
+        if self.request.user == serializer.instance.owner: #TEST
+            serializer.save() #TEST
+        else: # TEST
+            raise PermissionDenied("You do not have permission to edit this review.") #TEST
+
