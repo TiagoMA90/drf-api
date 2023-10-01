@@ -3,8 +3,9 @@ from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Review
 from .serializers import ReviewSerializer, ReviewDetailSerializer
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.response import Response #TEST
-from rest_framework import status #TEST
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
 
 
 class ReviewList(generics.ListCreateAPIView):
@@ -20,14 +21,17 @@ class ReviewList(generics.ListCreateAPIView):
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ReviewDetailSerializer
-    queryset = Review.objects.all()
 
-    def perform_update(self, serializer): #TEST
-        if self.request.user == serializer.instance.owner: #TEST
-            serializer.save() #TEST
-            return Response(serializer.data) #TEST
-        else: #TEST
-            return Response( #TEST
-                {"detail": "You do not have permission to edit this review."}, #TEST
-                status=status.HTTP_403_FORBIDDEN #TEST
-            ) #TEST
+    def get_object(self):
+        review_id = self.kwargs['pk']
+        review = get_object_or_404(Review, pk=review_id)
+        return review
+
+    def perform_update(self, serializer):
+        review = self.get_object()
+
+        if self.request.user == review.owner:
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            raise PermissionDenied("You do not have permission to edit this review.")
