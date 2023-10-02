@@ -7,7 +7,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 
-
 class ReviewList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -29,15 +28,13 @@ class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         review = self.get_object()
-        print(f"Review ID: {review.id}")
-        print(f"Request User: {self.request.user}")
-
         if self.request.user == review.owner:
             serializer.save()
-            return Response(serializer.data)
         else:
-            print("Permission Denied: User is not the owner.")
-            raise PermissionDenied("You do not have permission to edit this review.")
+            self.permission_denied(self.request)
+
+    def permission_denied(self, request):
+        self.raise_exception(permissions.PermissionDenied("You do not have permission to edit this review."))
 
 class ProfileReviews(generics.ListAPIView):
     serializer_class = ProfileReviewSerializer

@@ -2,12 +2,10 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from .models import Review
 
-
 class ReviewSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.username")
     is_owner = serializers.SerializerMethodField()
-    # profile_id = serializers.ReadOnlyField(source="owner.profile.id") # REVERT!?
-    profile_id = serializers.ReadOnlyField(source="profile.id") # TEST
+    profile_id = serializers.ReadOnlyField(source="profile.id")
     profile_image = serializers.ReadOnlyField(source="owner.profile.image.url")
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
@@ -36,9 +34,14 @@ class ReviewSerializer(serializers.ModelSerializer):
             "rating",
         ]
 
-class ReviewDetailSerializer(ReviewSerializer):
-    post = serializers.ReadOnlyField(source="post.id")
-
+class ReviewDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = [
+            "id",
+            "content",
+            "rating",
+        ]
 
 class ProfileReviewSerializer(serializers.ModelSerializer):
     class Meta:
