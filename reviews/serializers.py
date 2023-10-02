@@ -38,3 +38,16 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 class ReviewDetailSerializer(ReviewSerializer):
     post = serializers.ReadOnlyField(source="post.id")
+
+
+class ProfileReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = [
+            "id",
+            "owner",
+            "content",
+            "rating",
+            "created_at",
+            "updated_at",
+        ]
