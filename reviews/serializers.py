@@ -32,6 +32,7 @@ class ReviewSerializer(serializers.ModelSerializer):
             "updated_at",
             "content",
             "rating",
+            "profile", #added
         ]
 
 class ReviewDetailSerializer(serializers.ModelSerializer):
