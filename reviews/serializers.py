@@ -5,7 +5,7 @@ from .models import Review
 class ReviewSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.username")
     is_owner = serializers.SerializerMethodField()
-    profile_id = serializers.SerializerMethodField()
+    profile_id = serializers.ReadOnlyField(source="profile.id")
     profile_image = serializers.ReadOnlyField(source="owner.profile.image.url")
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
@@ -13,12 +13,6 @@ class ReviewSerializer(serializers.ModelSerializer):
     def get_is_owner(self, obj):
         request = self.context["request"]
         return request.user == obj.owner
-
-    def get_profile_id(self, obj):
-        if obj.profile:
-            return obj.profile.id
-        else:
-            return None
 
     def get_created_at(self, obj):
         return naturaltime(obj.created_at)
@@ -40,7 +34,6 @@ class ReviewSerializer(serializers.ModelSerializer):
             "content",
             "rating",
         ]
-
 
 class ReviewDetailSerializer(serializers.ModelSerializer):
     class Meta:
