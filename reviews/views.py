@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions, serializers
+from rest_framework import generics, permissions
 from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Review
 from .serializers import ReviewSerializer, ReviewDetailSerializer, ProfileReviewSerializer
@@ -6,31 +6,16 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from profiles.models import Profile  # Import the Profile model
 
 class ReviewList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = Review.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['owner']
 
     def perform_create(self, serializer):
-        profile_id = self.request.data.get('profile_id')
-        
-        # Ensure that profile_id is provided in the request data
-        if not profile_id:
-            raise serializers.ValidationError("profile_id is required when creating a review.")
-        
-        # Use profile_id to fetch the associated profile
-        profile = get_object_or_404(Profile, pk=profile_id)
-
-        # Associate the review with the specified profile
-        serializer.save(owner=self.request.user, profile=profile)
-
-    def get_queryset(self):
-        profile_id = self.request.query_params.get('profile_id')
-        if profile_id:
-            return Review.objects.filter(profile_id=profile_id)
-        else:
-            return Review.objects.all()
+        serializer.save(owner=self.request.user)
 
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
