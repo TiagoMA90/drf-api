@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions, serializers
+from rest_framework import generics, permissions
 from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Review
 from .serializers import ReviewSerializer, ReviewDetailSerializer, ProfileReviewSerializer
@@ -6,7 +6,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from profiles.models import Profile
 
 class ReviewList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
@@ -16,15 +15,7 @@ class ReviewList(generics.ListCreateAPIView):
     filterset_fields = ['owner']
 
     def perform_create(self, serializer):
-        profile_id = self.kwargs.get('profile_id')
-        if not profile_id:
-            profile_id = serializer.validated_data.get('profile_id')
-            if not profile_id:
-                raise serializers.ValidationError("Profile ID is required.")
-
-        profile = get_object_or_404(Profile, id=profile_id, user=self.request.user)
-
-        serializer.save(owner=self.request.user, profile_id=profile_id)
+        serializer.save(owner=self.request.user)
 
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
