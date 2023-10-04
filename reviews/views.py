@@ -15,7 +15,7 @@ class ReviewList(generics.ListCreateAPIView):
     filterset_fields = ['owner']
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user, profile_id=self.kwargs['profile_id'])
+        serializer.save(owner=self.request.user)
 
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
