@@ -15,9 +15,7 @@ class ReviewList(generics.ListCreateAPIView):
     filterset_fields = ['owner']
 
     def perform_create(self, serializer):
-        profile_id = self.kwargs['profile_id']
-        profile = get_object_or_404(Profile, id=profile_id)
-        serializer.save(owner=self.request.user, profile=profile)
+        serializer.save(owner=self.request.user, profile=self.request.user.profile)
 
 
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
