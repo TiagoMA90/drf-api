@@ -26,7 +26,6 @@ class ReviewSerializer(serializers.ModelSerializer):
             "id",
             "owner",
             "is_owner",
-            "profile",
             "profile_id",
             "profile_image",
             "created_at",
