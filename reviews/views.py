@@ -6,6 +6,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+from profiles.models import Profile
+
 
 class ReviewList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
@@ -15,8 +17,9 @@ class ReviewList(generics.ListCreateAPIView):
     filterset_fields = ['owner', 'profile']
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user, profile=self.request.user.profile)
-
+        profile_id = self.request.data.get('profile_id')
+        profile = get_object_or_404(Profile, pk=profile_id)
+        serializer.save(owner=self.request.user, profile=profile)
 
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
