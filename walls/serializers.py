@@ -27,5 +27,7 @@ class WallSerializer(serializers.ModelSerializer):
             "owner",
             "is_owner",
             "profile_id",
+            "created_at",
+            "updated_at",
             "content",
         ]
