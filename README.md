@@ -8,27 +8,31 @@ To serve as the Back bone for the Front-end, by posting and getting data from en
 ## Planning & Agile:
 This [project](https://github.com/users/TiagoMA90/projects/10) was planned using Agile methodology and MoSCoW prioritization.
 
-For this purpose, the project was illustrated by [7 initial Milestone](https://github.com/TiagoMA90/drf-api/milestones) entitled "Profiles", "Posts", "Likes", "Comments", "Followers", "Contacts" and "Reports"  providing the developer with the freedom to accomplish all issues/tasks flexibly before dates deadline set to November. The Milestones broken according to their components name.
+For this purpose, the project was illustrated by [9 initial Milestone](https://github.com/TiagoMA90/drf-api/milestones) entitled "Profiles", "Posts", "Likes", "Comments", "Followers", "Reviews", "walls", "Contacts" and "Reports"  providing the developer with the freedom to accomplish all issues/tasks flexibly before dates deadline set to November. The Milestones were broken according to their components name.
 
-Throughout the development process, tasks started from "Todo," progressing to "In Progress," and finally "Done". The issues were assigned to the sole developer and labeled as "could-have," "should-have,", "must-have" and "won't -have".
+Throughout the development process, new milestones were added, where tasks started from "Todo," progressing to "In Progress," and finally "Done". The issues were assigned to the sole developer and labeled as "could-have," "should-have,", "must-have" and "won't-have".
 
 <img src="readme/SampleAgile.png" alt="Sample Agile">
 
-In order of priority, with 51 User Stories, the Project has:
+In order of priority, with [62 closed User Stories](https://github.com/TiagoMA90/drf-api/issues?q=is%3Aissue+is%3Aclosed), the Project has:
 
 Must-Have:
-- Models, Views, Serializers, Urls for "profiles/posts/comments/likes"
+- Models, Views, Serializers, Urls for "profiles/posts/comments/likes/reviews/walls"
 - Set Up and Deployment
 - View Users Profiles (Profiles)
-- Profiles Premissions (Profiles)
+- Profiles Permissions (Profiles)
 - View Posts (Posts)
 - Create a Post (Posts)
-- Post Premissions (Posts)
+- Post Permissions (Posts)
 - View Comments (Comments)
 - Create a Comment (Comments)
-- Like Premissions (Likes)
+- Like Permissions (Likes)
 - Report Premissions (Reports)
 - View Contacts (Contacts)
+- Reviews Permissions (Reviews)
+- Create a Review (Reviews)
+- Wall posts Permissions (Walls)
+- Create a Wall post (Walls)
 
 Should-Have:
 - Models, Views, Serializers, Urls for "followers/reports/contacts
@@ -54,6 +58,10 @@ Should-Have:
 - Create a Contact (Contacts)
 - Contact Premissions (Admin)(Contacts)
 - View Contacts Details (Admin)(Contacts)
+- View Reviews Details (Reviews)
+- Update my Review (Reviews)
+- View Wall posts Details (Walls)
+- Update my Wall post (Walls)
 
 Could-Have:
 - Models, Views, Serializers, Urls for "likes"
@@ -66,9 +74,10 @@ Wont-Have:
 - Remove a Follower (Followers)
 - Update my Report (Reports)
 - Delete my Report (Reports)
+- Delete my Review (Reviews)
+- Delete my Wall post (Walls)
 
 The issues were closed and the milestones subsequently too.
-- Note: The Ratings Model was left as "To Do". Will be created when there are no time constraints.
 
 ## Relationship Diagram
 The relationship diagram between models from an individual perspective can be best defined as follows:
@@ -83,19 +92,19 @@ The relationship diagram between models from an individual perspective can be be
 
 Under Barker's notation. One/Many Users can create multiple Profiles, which can then create many Posts. Many Comments can be created in many Posts by one/many Profiles. One Likes/Unlikes can be created in many Posts by one/many Profiles. Many Reports can be created on many Posts by one/many Profiles. One/Many Profiles can follow/unfollow many Profiles. Contacts should be considered an isolated model as it is accessible by anyone, ergo many Users.
 
-<img src="readme/DiagramRelationship.png" alt="Models Diagram">
+<img src="readme/DiagramRelationship.png" alt="Models Diagram">(UPDATE)
 
 ## Methodology CRUD
 When performing CRUD (Create, Retrieve, Update, Delete) function based views, the following methods were used to manipulate the table in the database.
 
 For such, to the subsequent endpoints:
-/profiles/, /posts/, /comments/, /likes/, /followers/, /reports/, /contacts/ 
+/profiles/, /posts/, /comments/, /likes/, /followers/, /reviews/, /walls/, /reports/, /contacts/
 
 - POST - Used to create an object to a list of (endpoint)
 - GET - Used to retrieve series of objects from a list of (endpoint)
 
 Singularly, for the same endpoints past the primary keys:
-/profiles/int:pk/, /posts/int:pk/int:pk/, /comments/int:pk/, /likes/int:pk/, /followers/int:pk/, /reports/int:pk/, /contacts/int:pk/
+/profiles/int:pk/, /posts/int:pk/int:pk/, /comments/int:pk/, /likes/int:pk/, /followers/int:pk/, /reviews/int:pk/, /walls/int:pk/, /reports/int:pk/, /contacts/int:pk/
 
 - GET - Used to view a single object in a list or (endpoint)
 - PUT - Used to update a single object in a list of (endpoint)
@@ -107,6 +116,8 @@ Users can then:
 - CRUD Comments
 - CRUD Likes
 - CRUD Followers
+- CRU Reviews
+- CRU Walls
 - CR Reports
 - CR Contacts
 
@@ -116,6 +127,8 @@ As a Superuser one has the ability to perform the following via the [admin panel
 - CRUD Posts
 - CRUD Comments
 - CRUD Profiles
+- CRUD Reviews
+- CRUD Walls
 - CRUD Contacts
 - CRUD Reports
 - Change Passwords
@@ -125,7 +138,7 @@ As a Superuser one has the ability to perform the following via the [admin panel
 
 ## Manual Testing
 Manual Testing for the overall functionality of the API was performed by entering dummy data in the backend both via Backend-and Front-end.
-All data is CRUDed acordingly.
+All data is CRUDed accordingly.
 
 CI Python Linter was also used in parallel with the development of the API, to keep the code free of errors.
 
