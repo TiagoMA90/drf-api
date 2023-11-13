@@ -209,6 +209,17 @@ To create a new Django project, in the currenct directory, the followig command 
 
 To create the app the following command ran:
 - ```python3 manage.py startapp NAMOFTHEAPP``` <- Creates a folder for the app withing the project
+- 
+The website is being hosted and deployed on Heroku:
+- After creating an Heroku Free account, and applying for Student Pack
+- Navigate to: "Create new app" add a unique name "djangorestframework-api" and select "Europe" region. Click "Create App"
+- Head over to "Settings" tab and apply the respective config VARs
+- Move to "Deploy" section and select "Github" method"
+- From here search for the repository name "connect", from the GitHub account.
+- Hit "Connect" and "Enable Automatic Deploys" to keep the the repository in parallel to Heroku.
+- Manually "Deploy Main Branch".
+- Upon successful deployment, retrieve the link for the mock terminal.
+- The live app can be found [here]([https://connect-network-ee92c70de293.herokuapp.com/](https://djangorestframework-api-38c4a098777a.herokuapp.com/)).
 
 ## Languages & Technologies
 - Django REST Framework (Python Framework - API)
