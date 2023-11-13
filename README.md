@@ -219,7 +219,7 @@ The website is being hosted and deployed on Heroku:
 - Hit "Connect" and "Enable Automatic Deploys" to keep the the repository in parallel to Heroku.
 - Manually "Deploy Main Branch".
 - Upon successful deployment, retrieve the link for the mock terminal.
-- The live app can be found [here]([https://connect-network-ee92c70de293.herokuapp.com/](https://djangorestframework-api-38c4a098777a.herokuapp.com/)).
+- The live app can be found [here](https://djangorestframework-api-38c4a098777a.herokuapp.com/).
 
 ## Languages & Technologies
 - Django REST Framework (Python Framework - API)
