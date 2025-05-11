@@ -50,12 +50,15 @@ SECRET_KEY = os.getenv('SECRET_KEY')  # Use getenv to load from .env
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = [
-    os.getenv('ALLOWED_HOST'),
-    '8000-tiagoma90-drfapi-bogjxmhrbvj.ws-eu105.gitpod.io',
-    'djangorestframework-api-38c4a098777a.herokuapp.com',
-    'localhost',
-]
+# ALLOWED_HOSTS = [
+#     os.getenv('ALLOWED_HOST'),
+#    '8000-tiagoma90-drfapi-bogjxmhrbvj.ws-eu105.gitpod.io',
+#    'djangorestframework-api-38c4a098777a.herokuapp.com',
+#    'localhost',
+#]
+
+# Or Comment above and uncomment below, for universal allowed hosting
+ALLOWED_HOSTS = ['*']
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
