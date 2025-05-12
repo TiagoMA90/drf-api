@@ -27,3 +27,4 @@ setuptools==66.1.1
 sqlparse==0.4.1
 urllib3==1.26.15
 whitenoise==6.9.0
+django-allauth==0.51.0
