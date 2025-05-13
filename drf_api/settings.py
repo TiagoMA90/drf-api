@@ -52,7 +52,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
      os.getenv('ALLOWED_HOST'),
-    '8000-tiagoma90-drfapi-bogjxmhrbvj.ws-eu105.gitpod.io',
+    '8000-tiagoma90-drfapi-w02xqzwltet.ws-eu118.gitpod.io',
     'djangorestframework-api-38c4a098777a.herokuapp.com',
     'localhost',
 ]
@@ -74,7 +74,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-tiagoma90-drfapi-qjj8atxkule.ws-eu104.gitpod.io',
+    'https://8000-tiagoma90-drfapi-w02xqzwltet.ws-eu118.gitpod.io',
     'https://djangorestframework-api-38c4a098777a.herokuapp.com'
     ]
 
@@ -122,7 +122,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'drf_api.urls'
